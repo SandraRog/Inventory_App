@@ -1,0 +1,36 @@
+<!--Extends teh base layout from the layout.html-->
+{% extends 'invAppT/layout.html' %}
+{% block title %} Product List {% endblock %}
+{% block content %}
+    <h1 class="text-center">Products</h1>
+    <table class="table table-bordered table-striped text-center">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Product ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">SKU</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Supplier</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+{#        odnosimy sie do pol modelu#}
+        {% for product in products %}
+            <tr>
+            <td>{{ product.product_id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.sku }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.supplier }}</td>
+            <td>
+                <a href="{% url 'product_update' product.product_id %}" class="btn btn-warning">Update</a>
+                <a href="{% url 'product_delete' product.product_id %}" class="btn btn-danger">Delete</a>
+            </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
